@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display Webcam Stream</title>
+ 
+<style>
+
+#container {
+  
+	margin: 0px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px rgb(0, 0, 0) solid;
+}
+#videoElement {
+	width: 800px;
+	height: 500px;
+	
+}
+</style>
+</head>
+ 
+<body>
+  <div id="wrap">
+    <nav>
+        <div class="logo">
+            MINZ<strong>CODE</strong>
+        </div>
+        <button type="button" class="btn-hamburger" data-action="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="/home">Trang chủ</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" data-action="dropdown-toggle"  >Chấm công</a>
+                <div class="dropdown-menu" style="width: 200px;" >
+                    <a class="dropdown-item" href="/login" >Chấm công</a>
+                    <a class="dropdown-item" href="/login">Thêm khuôn mặt</a>
+                </div>
+            </li>
+            <li class="nav-item"><a href="#">Work</a></li>
+            <li class="nav-item dropdown" id="id1">
+                <a href="#" data-action="dropdown-toggle1" id="id2">Tài khoản</a>
+                <div class="dropdown-menu" style="width: 150px;" >
+                    <a class="dropdown-item" href="/login">Đăng nhập</a>
+                    <a class="dropdown-item" href="/login">Đăng ký</a>
+                    <a class="dropdown-item" href="#">Đăng xuất</a>
+                </div>
+            </li>
+        </ul>
+        
+    </nav>
+
+</div>
+ 
+<p style="margin-top: 100px; "> </p>
+  
+<div id="container">
+	<video autoplay="true" style="display: none;" id="videoElement">
+	
+	</video>
+  <canvas  id="myCanvas" width="800px" height="500px"></canvas>  
+</div>
+<p id="demo" style="color:aliceblue">vui lòng chờ</p>
+<button type="submit" onclick='getLocation();'>Click Here to see your data</button>
+<button type="submit" onclick='myfunction();'>aaa</button>
+
+<footer class="footer-distributed">
+      
+  <div class="footer-left">
+
+     <h3>Company<span>logo</span></h3>
+
+     <p class="footer-links">
+        <a href="#" class="link-1">Home</a>
+     
+        <a href="#">About</a>
+        
+
+        
+        <a href="#">Contact</a>
+     </p>
+
+     <p class="footer-company-name" style="color: blue;">Company Name © 2022</p>
+  </div>
+
+  <div class="footer-center">
+
+     <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>Số 123</span> Hà Nội, Việt Nam</p>
+     </div>
+
+     <div>
+        <i class="fa fa-phone"></i>
+        <p>098.7654.321</p>
+     </div>
+
+     <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="mailto:support@company.com">support@company.com</a></p>
+     </div>
+
+  </div>
+
+  <div class="footer-right">
+
+     <p class="footer-company-about" style="color: rgb(255, 255, 255);">
+        <span style="color: rgb(202, 39, 39);">About the company</span>
+        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+     </p>
+
+     <div class="footer-icons">
+
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+
+     </div>
+
+  </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+var video = document.getElementById("videoElement");
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext('2d');
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+      
+    })
+
+
+
+setInterval(function () {
+  context.drawImage(video, 0, 0, 800, 500);
+  context.beginPath();
+  context.lineWidth = "4";
+  context.strokeStyle = "red";
+  context.fillStyle = "red";
+  context.font = "25px Arial, Helvetica, sans-serif";
+  context.fillText('Vui lòng hướng mặt vào ô vuông', 225, 50);
+  context.rect(225, 75, 350, 350);
+  context.stroke();
+  
+
+}, 150);
+
+
+      
+
+}
+</script>
+
+
+
+
+</body>
+</html>

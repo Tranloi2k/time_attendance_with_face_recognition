@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Chấm công online | Trần Lợi</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+
+    <!-- Font special for pages-->
+
+<link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+#container {
+  background-color: black;
+  
+	margin-top: 50px !important;
+	width: 700px !important;
+	height: 500px;
+	border: 1px rgb(0, 0, 0) solid;
+}
+#videoElement {
+	width: 700px;
+	height: 500px;
+  transform: rotateY(180deg) !important;
+  -webkit-transform:rotateY(180deg) !important; /* Safari and Chrome */
+	
+}
+</style>
+</head>
+ 
+<body>
+
+  <div id="wrap">
+    <nav>
+        <div class="logo">
+            EASY<strong>CODE</strong>
+        </div>
+        <button type="button" class="btn-hamburger" data-action="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="/home">Trang chủ</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" data-action="dropdown-toggle"  >Chấm công</a>
+                <div class="dropdown-menu" style="width: 200px;" >
+                    <a class="dropdown-item" href="/video" >Chấm công</a>
+                    <a class="dropdown-item" href="/new_data">Thêm khuôn mặt</a>
+                </div>
+            </li>
+            <li class="nav-item"><a href="/history">Lịch sử</a></li>
+            <li class="nav-item"><a href="/user_info">Hồ sơ</a></li>
+            <li class="nav-item dropdown" id="id1">
+                <a href="#" data-action="dropdown-toggle1" id="id2">Tài khoản</a>
+                <div class="dropdown-menu" style="width: 150px;" >
+                    <a class="dropdown-item" href="/login">Đăng nhập</a>
+                    <a class="dropdown-item" href="/login">Đăng ký</a>
+                    <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                </div>
+            </li>
+        </ul>
+        
+    </nav>
+    {% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="container" style="display: block;top: 90px; margin-top: 0px !important; min-height: 55px !important;border-radius:6px ;  border-color: rgb(197, 197, 197); min-width: 350px; max-height:70px !important;padding: 0px !important;">
+        <div class="alert alert-{{category}}">{{ message }}
+          <span class="closebtn" style="padding-inline-start: 15px !important;border-right-width: 7px !important;" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+     </div>    
+       
+      {% endfor %}
+</div>
+<p style="margin-top: 100px !important; position: absolute; display: block;"> </p>
+  <p id="demo">vui lòng chờ</p>
+<div id="container">
+	<video autoplay="true" class="videoElement" style="display: none;" id="videoElement" >
+	
+	</video>
+  <canvas  id="myCanvas" width="800px" style="display: none;" height="500px"></canvas>  
+  <canvas  id="myCanvas2" width="800px"  height="500px"></canvas>  
+</div>
+
+
+<button  style="margin-top: 10px!important; background-color: aliceblue; padding: 10px; border-radius: 5px; border-color: antiquewhite;border-width: 1px;" type="submit" onclick='add();'>Thêm khuôn mặt</button>
+
+<footer class="footer-distributed" style="display: block; margin-top: 100px;">
+      
+  <div class="footer-left">
+
+     <h3>Company<span>logo</span></h3>
+
+     <p class="footer-links">
+        <a href="#" class="link-1">Home</a>
+     
+        <a href="#">About</a>
+        
+
+        
+        <a href="#">Contact</a>
+     </p>
+
+     <p class="footer-company-name" style="color: rgb(202, 39, 39);">Company Name © 2022</p>
+  </div>
+
+  <div class="footer-center">
+
+     <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>Số 123</span> Hà Nội, Việt Nam</p>
+     </div>
+
+     <div>
+        <i class="fa fa-phone"></i>
+        <p>098.7654.321</p>
+     </div>
+
+     <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="mailto:support@company.com">support@company.com</a></p>
+     </div>
+
+  </div>
+
+  <div class="footer-right">
+
+     <p class="footer-company-about" style="color: rgb(255, 255, 255);">
+        <span style="color: rgb(202, 39, 39); font-size: 22px;">About the company</span>
+        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+     </p>
+
+     <div class="footer-icons">
+
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+
+     </div>
+
+  </div>
+
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+var video = document.getElementById("videoElement");
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext('2d');
+
+var canvas2 = document.getElementById("myCanvas2");
+var context2 = canvas2.getContext('2d');
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+      
+    })
+
+    setInterval(function () {
+
+      context2.save();
+    context2.scale(-1, 1);
+    context2.drawImage(video, 0, 0, 700*-1, 500);
+    context2.restore();
+
+
+
+
+  context2.beginPath();
+  
+  context2.lineWidth = "2";
+  context2.strokeStyle = "red";
+  context2.fillStyle = "red";
+  context2.font = "20px Arial, Helvetica, sans-serif";
+  context2.fillText('Vui lòng hướng mặt vào ô vuông', 200, 50);
+  context2.rect(175, 75, 350, 350);
+  context2.stroke();
+  
+    },100);
+
+
+function add(){
+    alert("Vui lòng chờ ");
+    context.drawImage(video, 0, 0, 700, 500);
+    var name = document.getElementById("name");
+  
+  
+    var image = canvas.toDataURL('image/png');
+    $.ajax({
+        type: "POST",
+        url: "/new_data",
+        data:{
+        imageBase64: image
+        }
+        }).done(function() {
+        console.log('sent');
+        
+        });
+    
+    waiter =0;
+    setInterval(function () {
+      waiter=waiter+1;
+      if (waiter>=20){
+        socket.emit('name2')
+      socket.on('name2', function (data) {
+      console.log(data);
+      if(data.process == 'done'){
+        document.getElementById("demo").innerHTML = data.data;
+        alert("Thêm data thành công ");
+      }
+      });
+      };
+      
+
+    }, 100);
+
+};
+}
+</script>
+
+
+
+<script>
+  var video = document.getElementById("videoElement");
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  let model;
+  model.blazeface.load();
+  const detectFaces = async () => {
+    const prediction = await model.estimateFaces(video, false);
+    console.log(prediction);
+    
+    prediction.forEach((pred) => {
+      ctx.beginPath();
+      ctx.lineWidth = "6";
+      ctx.strokeStyle = "red";
+      ctx.rect(
+        pred.topLeft[0],
+        pred.topLeft[1],
+        pred.bottomRight[0] - pred.topLeft[0],
+        pred.bottomRight[1] - pred.topLeft[1],
+
+      );
+      ctx.stroke();
+    }
+
+    );
+  };
+
+  setInterval(function () {
+    detectFaces();
+},100);
+</script>
+
+
+</body>
+</html>

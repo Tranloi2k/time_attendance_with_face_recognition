@@ -1,0 +1,213 @@
+
+
+
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Chấm công online | Trần Lợi</title>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+
+
+    <link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+      <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='public/main.css') }}" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+    <div id="wrap">
+        <nav>
+            <div class="logo">
+                EASY<strong>CODE</strong>
+            </div>
+            <button type="button" class="btn-hamburger" data-action="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/home">Trang chủ</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" data-action="dropdown-toggle"  >Chấm công</a>
+                    <div class="dropdown-menu" style="width: 200px;" >
+                        <a class="dropdown-item" href="/video" >Chấm công</a>
+                        <a class="dropdown-item" href="/new_data">Thêm khuôn mặt</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="/history">Lịch sử</a></li>
+                <li class="nav-item"><a href="/user_info">Hồ sơ</a></li>
+                <li class="nav-item dropdown" id="id1">
+                    <a href="#" data-action="dropdown-toggle1" id="id2">Tài khoản</a>
+                    <div class="dropdown-menu" style="width: 150px;" >
+                        <a class="dropdown-item" href="/login">Đăng nhập</a>
+                        <a class="dropdown-item" href="/login">Đăng ký</a>
+                        <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                    </div>
+                </li>
+            </ul>
+            
+        </nav>
+    
+    </div>
+     <form method="POST"> 
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Thông tin nhân viên</h2>
+                    <form method="POST">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ, đệm</label>
+                                    <input class="input--style-4" type="text" name="first_name">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Tên</label>
+                                    <input class="input--style-4" type="text" name="last_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ngày tháng năm sinh</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Giới tính</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Nam
+                                            <input type="radio" checked="checked" value="Nam" name="gender">
+                                            <span class="checkmark" value="Nam"></span>
+                                        </label>
+                                        <label class="radio-container">Nữ
+                                            <input type="radio" name="gender" value="Nữ">
+                                            <span class="checkmark" value="Nữ"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ</label>
+                                    <input class="input--style-4" type="text" name="address">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Số điện thoại</label>
+                                    <input class="input--style-4" type="text" name="phone">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Xác nhận</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     </form>
+     <footer class="footer-distributed">
+      
+        <div class="footer-left">
+
+           <h3>Company<span>logo</span></h3>
+
+           <p class="footer-links">
+              <a href="#" class="link-1">Home</a>
+           
+              <a href="#">About</a>
+              
+  
+              
+              <a href="#">Contact</a>
+           </p>
+
+           <p class="footer-company-name" style="color: blue;">Company Name © 2022</p>
+        </div>
+
+        <div class="footer-center">
+
+           <div>
+              <i class="fa fa-map-marker"></i>
+              <p><span>Số 123</span> Hà Nội, Việt Nam</p>
+           </div>
+
+           <div>
+              <i class="fa fa-phone"></i>
+              <p>098.7654.321</p>
+           </div>
+
+           <div>
+              <i class="fa fa-envelope"></i>
+              <p><a href="mailto:support@company.com">support@company.com</a></p>
+           </div>
+
+        </div>
+
+        <div class="footer-right">
+
+           <p class="footer-company-about" style="color: rgb(255, 255, 255);">
+              <span style="color: rgb(202, 39, 39);">About the company</span>
+              Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+           </p>
+
+           <div class="footer-icons">
+
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+              <a href="#"><i class="fa fa-github"></i></a>
+
+           </div>
+
+        </div>
+
+     </footer>
+    <!-- Main JS-->
+
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datepicker/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datepicker/daterangepicker.js') }}"></script>
+
+      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+      
+   </body>
+</html>

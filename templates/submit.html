@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Chấm công online | Trần Lợi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+    <link href="{{ url_for('static', filename='public/style.css') }}" rel="stylesheet">
+</head>
+  <body>
+    <div id="wrap">
+      <nav>
+          <div class="logo">
+              EASY<strong>CODE</strong>
+          </div>
+          <button type="button" class="btn-hamburger" data-action="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+          
+          <ul class="nav-menu">
+              <li class="nav-item"><a href="/home_3">Trang chủ</a></li>
+              
+              <li class="nav-item"><a href="/submit">Phê duyệt</a></li>
+              <li class="nav-item dropdown" id="id1">
+                  <a href="#" data-action="dropdown-toggle" id="id2">Tài khoản</a>
+                  <div class="dropdown-menu" style="width: 150px;" >
+                      <a class="dropdown-item" href="/login">Đăng nhập</a>
+                      <a class="dropdown-item" href="/login">Đăng ký</a>
+                      <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                  </div>
+              </li>
+          </ul>
+          
+      </nav>
+  
+  </div>
+    <div class="container" style="background-color: aliceblue; top: 100px; border-radius: 7px; word-wrap:break-word; min-width: 600px; font-size: 14px;">
+      
+      <p style="margin-right: 0cm !important; display: block;">Đang chờ: {{ cho }} &nbsp; Đã duyệt: {{duyet}} &nbsp; Đã loại: {{loai}}</p>
+      
+      <hr>
+
+      <table id="data" class="table table-striped table-bordered table-sm" cellspacing="0"  style="word-wrap:break-word; width: 100% !important;">
+        <thead style="max-width: 100% !important;">
+
+          <tr>
+            {% for col in column_names %}
+            <th class="th-sm" style="max-width: 20% !important;">
+
+              {{col}}
+
+            </th>
+            {% endfor %}
+            <th> </th>
+          </tr>
+
+        </thead>
+        <tbody>
+          {% for row in row_data %}
+          <tr>
+            {% for col, row_ in zip(column_names, row) %}
+            <td style="word-wrap:break-word;"><a style="word-wrap:break-word;">{{row_}}</a></td>
+
+            {% endfor %}
+
+            <td>
+              <form method="POST">
+                <select class="browser-default custom-select" onchange="test(this)" name="submit" id="select" style="border-radius: 3px; width: 100%; min-width: 80px;">
+              
+                  <option value="Duyệt {{row[0]}}">Duyệt</option>
+                  <option value="Loại {{row[0]}}">Loại</option>
+                </select>
+              <button type="button" onclick='update_status(this.id)' id="{{row[0]}}" style=" background-color: aliceblue; padding: 4px; border-radius: 6px; border-color: antiquewhite;border-width: 1px; width: 100%;min-width: 80px;" >Xác nhận</button>
+              </form>
+            </td>
+          
+        </tr>
+          {% endfor %}
+
+
+        </tbody>
+
+      </table>
+
+    </div>
+    <footer class="footer-distributed" style="display: block; margin-top: 200px;">
+      
+        <div class="footer-left">
+
+           <h3>Company<span>logo</span></h3>
+
+           <p class="footer-links">
+              <a href="#" class="link-1">Home</a>
+           
+              <a href="#">About</a>
+              
+  
+              
+              <a href="#">Contact</a>
+           </p>
+
+           <p class="footer-company-name" style="color: rgb(202, 39, 39);">Company Name © 2022</p>
+        </div>
+
+        <div class="footer-center">
+
+           <div>
+              <i class="fa fa-map-marker"></i>
+              <p><span>Số 123</span> Hà Nội, Việt Nam</p>
+           </div>
+
+           <div>
+              <i class="fa fa-phone"></i>
+              <p>098.7654.321</p>
+           </div>
+
+           <div>
+              <i class="fa fa-envelope"></i>
+              <p><a href="mailto:support@company.com">support@company.com</a></p>
+           </div>
+
+        </div>
+
+        <div class="footer-right">
+
+           <p class="footer-company-about" style="color: rgb(255, 255, 255);">
+              <span style="color: rgb(202, 39, 39);font-size: 22px;">About the company</span>
+              Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+           </p>
+
+           <div class="footer-icons">
+
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+              <a href="#"><i class="fa fa-github"></i></a>
+
+           </div>
+
+        </div>
+
+     </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+    <script>
+        $(document).ready(function () {
+          $('#data').DataTable({
+            columns: [
+              null,
+              null,
+              { orderables: false},
+              null,
+              null,
+              null,
+              {orderable: false, searchable: false}],
+          });
+        });
+        var status;
+        function test(a) {
+          status = (a.value || a.options[a.selectedIndex].value);  //crossbrowser solution =)
+          
+        }
+
+        
+        function update_status(ids){
+          id = ids.split(' ')[0];
+          console.log(status.split(' ')[0]);
+          console.log(id);
+          dict_values ={'status': status.split(' ')[0],'id' : id};
+          
+          $.ajax({
+            type: "POST",
+            url: "/submit2",
+            contentType: "application/json",
+            data: JSON.stringify(dict_values),
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+          });
+
+
+        };
+      </script>
+
+    
+  </body>
+</html>
